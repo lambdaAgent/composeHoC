@@ -1,8 +1,12 @@
-const composeHoC = (component) => ({ 
-  compose(HoCLibrary){
-    return composeHoC(HoCLibrary(component)) 
-  },
-  export(){
-    return component;
-  },
-})
+function ComposeHoC(component){
+  return {
+    compose: function(HoCLibrary){
+      return ComposeHoC(HoCLibrary(component))
+    },
+    export: function(){
+      return component
+    }
+  }
+}
+
+module.export = ComposeHoC
